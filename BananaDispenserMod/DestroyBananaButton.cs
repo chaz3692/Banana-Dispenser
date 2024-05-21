@@ -14,8 +14,7 @@ using Utilla;
 
 namespace BananaDispenser.Resources
 {
-    [BepInPlugin(GorillaTagModTemplateProject.PluginInfo.GUID, GorillaTagModTemplateProject.PluginInfo.Name, GorillaTagModTemplateProject.PluginInfo.Version)]
-    internal class DestroyBananaButton : BaseUnityPlugin
+    internal class DestroyBananaButton : MonoBehaviour
     {
         public static HoldableEngine[] bananaList;
         public void DestroyBananas()

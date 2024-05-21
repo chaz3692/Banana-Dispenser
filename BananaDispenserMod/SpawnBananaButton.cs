@@ -14,8 +14,7 @@ using Utilla;
 
 namespace BananaDispenser
 {
-    [BepInPlugin(GorillaTagModTemplateProject.PluginInfo.GUID, GorillaTagModTemplateProject.PluginInfo.Name, GorillaTagModTemplateProject.PluginInfo.Version)]
-    public class SpawnBananaButton : BaseUnityPlugin
+    public class SpawnBananaButton : MonoBehaviour
     {
         public static GameObject banana;
         public static Transform spawnPos1;
