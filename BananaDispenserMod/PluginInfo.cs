@@ -5,8 +5,8 @@
 	/// </summary>
 	class PluginInfo
 	{
-		public const string GUID = "com.AuthorLowerName.gorillatag.GorillaTagLowerModTemplateProject";
-		public const string Name = "BananDispenser";
+		public const string GUID = "com.chaz.gorillatag.BananaDispenser";
+		public const string Name = "BananaDispenser";
 		public const string Version = "1.0.0";
 	}
 }
