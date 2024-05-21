@@ -2,7 +2,7 @@
 using System.Reflection;
 using HarmonyLib;
 
-namespace GorillaTagModTemplateProject
+namespace BananaDispenser
 {
 	/// <summary>
 	/// This class handles applying harmony patches to the game.
@@ -13,7 +13,7 @@ namespace GorillaTagModTemplateProject
 		private static Harmony instance;
 
 		public static bool IsPatched { get; private set; }
-		public const string InstanceId = PluginInfo.GUID;
+		public const string InstanceId = BananaDispenser.PluginInfo.GUID;
 
 		internal static void ApplyHarmonyPatches()
 		{
