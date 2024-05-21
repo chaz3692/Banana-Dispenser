@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\bananadispenser" />
+    <None Remove="AssetBundles\bananadispenser" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\bananadispenser" />
+    <EmbeddedResource Include="AssetBundles\bananadispenser" />
   </ItemGroup>
 
   <ItemGroup>

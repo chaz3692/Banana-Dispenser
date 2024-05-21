@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Chaz\\Downloads\\BananaDispenserMod\\BananaDispenser.csproj",
+      "projectUniqueName": "C:\\Users\\Chaz\\Documents\\GitHub\\Banana-Dispenser\\BananaDispenserMod\\BananaDispenser.csproj",
       "projectName": "BananaDispenser",
-      "projectPath": "C:\\Users\\Chaz\\Downloads\\BananaDispenserMod\\BananaDispenser.csproj",
+      "projectPath": "C:\\Users\\Chaz\\Documents\\GitHub\\Banana-Dispenser\\BananaDispenserMod\\BananaDispenser.csproj",
       "packagesPath": "C:\\Users\\Chaz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Chaz\\Downloads\\BananaDispenserMod\\obj\\",
+      "outputPath": "C:\\Users\\Chaz\\Documents\\GitHub\\Banana-Dispenser\\BananaDispenserMod\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Chaz\\AppData\\Roaming\\NuGet\\NuGet.Config",

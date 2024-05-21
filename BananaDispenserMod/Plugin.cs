@@ -28,7 +28,7 @@ namespace BananaDispenser
         private void Init(object sender, EventArgs e)
         {
             //Load AssetBundle
-            bundle = LoadAssetBundle("BananaDispenser.Resources.bananadispenser");
+            bundle = LoadAssetBundle("BananaDispenser.AssetBundles.bananadispenser");
 
             //Load Parent
             parent = Instantiate(bundle.LoadAsset<GameObject>("BananaDispenserParent"));

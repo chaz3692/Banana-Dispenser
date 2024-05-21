@@ -17,11 +17,11 @@ namespace BananaDispenser.Resources
     [BepInPlugin(GorillaTagModTemplateProject.PluginInfo.GUID, GorillaTagModTemplateProject.PluginInfo.Name, GorillaTagModTemplateProject.PluginInfo.Version)]
     internal class DestroyBananaButton : BaseUnityPlugin
     {
-        public static DevHoldable[] bananaList;
+        public static HoldableEngine[] bananaList;
         public void DestroyBananas()
         {
-            bananaList = GameObject.FindObjectsOfType<DevHoldable>();
-            foreach(DevHoldable erm in bananaList)
+            bananaList = GameObject.FindObjectsOfType<HoldableEngine>();
+            foreach(HoldableEngine erm in bananaList)
             {
                 Destroy(erm.gameObject);
             }

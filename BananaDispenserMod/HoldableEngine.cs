@@ -5,7 +5,7 @@ using BananaDispenser;
 
 namespace DevHoldableEngine
 {
-    public class DevHoldable : HoldableObject
+    public class HoldableEngine : HoldableObject
     {
         public bool InHand;
         public bool InLeftHand;

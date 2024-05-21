@@ -44,7 +44,7 @@ namespace BananaDispenser
             }
 
             //Add Physics
-            var holdable = banana.AddComponent<DevHoldable>();
+            var holdable = banana.AddComponent<HoldableEngine>();
             holdable.Rigidbody = banana.GetComponent<Rigidbody>();
             holdable.PickUp = true;
             banana.AddComponent<RigidbodyWaterInteraction>();
