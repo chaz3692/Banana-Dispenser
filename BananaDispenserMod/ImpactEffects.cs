@@ -7,7 +7,7 @@ namespace BananaDispenser
 {
     internal class ImpactEffects : MonoBehaviour
     {
-        private const float velocityForEffects = 10f;
+        private const float velocityForEffects = 15f;
         private AudioClip splatSound;
         public bool isCat;
         private const float effectVolume = 1f;
