@@ -31,7 +31,7 @@ namespace DevHoldableEngine
             {
                 boxColl = gameObject.GetComponent<BoxCollider>();
             }
-            audioSource = GetComponent<AudioSource>();
+            audioSource.pitch = 1;
             audioSource.clip = grabSound;
             audioSource.PlayOneShot(audioSource.clip);
 
@@ -51,7 +51,7 @@ namespace DevHoldableEngine
                     Rigidbody.angularVelocity = gorillaVelocityEstimator.angularVelocity;
                 }
             }
-
+            audioSource.pitch = 1;
             audioSource.clip = throwSound;
             audioSource.PlayOneShot(audioSource.clip);
         }
@@ -121,6 +121,7 @@ namespace DevHoldableEngine
 
         public void Awake()
         {
+            audioSource = GetComponent<AudioSource>();
             grabSound = Plugin.bundle.LoadAsset<AudioClip>("grab");
             throwSound = Plugin.bundle.LoadAsset<AudioClip>("throw");
         }

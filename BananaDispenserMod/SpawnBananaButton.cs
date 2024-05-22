@@ -45,7 +45,7 @@ namespace BananaDispenser
 
             //Add Physics
             var impact = banana.AddComponent<ImpactEffects>();
-            impact.isCat = false;
+            impact.isPipe = false;
             var holdable = banana.AddComponent<HoldableEngine>();
             holdable.Rigidbody = banana.GetComponent<Rigidbody>();
             holdable.PickUp = true;
@@ -58,9 +58,8 @@ namespace BananaDispenser
         public void SpawnCar()
         {
             spawnPos1 = Plugin.spawnPos1;
-            spawnPos2 = Plugin.spawnPos2;
 
-            car = Instantiate(Plugin.bundle.LoadAsset<GameObject>("Cat"));
+            car = Instantiate(Plugin.bundle.LoadAsset<GameObject>("Pipe"));
 
             //Set Pos To Tree
             car.transform.position = spawnPos1.transform.position;
@@ -72,7 +71,7 @@ namespace BananaDispenser
 
             //Add Physics
             var impact = car.AddComponent<ImpactEffects>();
-            impact.isCat = true;
+            impact.isPipe = true;
             var holdable = car.AddComponent<HoldableEngine>();
             holdable.Rigidbody = car.GetComponent<Rigidbody>();
             holdable.PickUp = true;
