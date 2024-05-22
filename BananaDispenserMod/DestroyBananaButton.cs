@@ -17,6 +17,7 @@ namespace BananaDispenser.Resources
     internal class DestroyBananaButton : MonoBehaviour
     {
         public static HoldableEngine[] bananaList;
+        public static bool canPress = true;
         public void DestroyBananas()
         {
             bananaList = GameObject.FindObjectsOfType<HoldableEngine>();
@@ -26,15 +27,21 @@ namespace BananaDispenser.Resources
             }
         }
 
-        public static int framePressCooldown = 0;
         private void OnTriggerEnter(Collider collider)
         {
-            if (Time.frameCount >= framePressCooldown + 20 && collider.name == "buttonPresser")
+            if (collider.name == "buttonPresser" && canPress)
             {
+                canPress = false;
                 DestroyBananas();
                 GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(67, false, 0.1f);
                 GorillaTagger.Instance.StartVibration(false, .01f, 0.001f);
-                framePressCooldown = Time.frameCount;
+            }
+        }
+        private void OnTriggerExit(Collider collider)
+        {
+            if (collider.name == "buttonPresser" && !canPress)
+            {
+                canPress = true;
             }
         }
     }
