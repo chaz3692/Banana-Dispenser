@@ -29,17 +29,30 @@ namespace BananaDispenser.Resources
 
         private void OnTriggerEnter(Collider collider)
         {
-            if (collider.name == "buttonPresser" && canPress)
+            if (collider.name == "buttonPresserR" && canPress)
             {
                 canPress = false;
                 DestroyBananas();
                 GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(67, false, 0.1f);
                 GorillaTagger.Instance.StartVibration(false, .01f, 0.001f);
             }
+
+            if (collider.name == "buttonPresserL" && canPress)
+            {
+                canPress = false;
+                DestroyBananas();
+                GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(67, true, 0.1f);
+                GorillaTagger.Instance.StartVibration(true, .01f, 0.001f);
+            }
         }
         private void OnTriggerExit(Collider collider)
         {
-            if (collider.name == "buttonPresser" && !canPress)
+            if (collider.name == "buttonPresserR" && !canPress)
+            {
+                canPress = true;
+            }
+
+            if (collider.name == "buttonPresserL" && !canPress)
             {
                 canPress = true;
             }

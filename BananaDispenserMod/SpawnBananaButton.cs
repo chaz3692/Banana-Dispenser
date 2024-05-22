@@ -44,6 +44,8 @@ namespace BananaDispenser
             }
 
             //Add Physics
+            var impact = banana.AddComponent<ImpactEffects>();
+            impact.isCat = false;
             var holdable = banana.AddComponent<HoldableEngine>();
             holdable.Rigidbody = banana.GetComponent<Rigidbody>();
             holdable.PickUp = true;
@@ -69,6 +71,8 @@ namespace BananaDispenser
             car.GetComponent<Rigidbody>().AddForce(spawnPos1.transform.up * force);
 
             //Add Physics
+            var impact = car.AddComponent<ImpactEffects>();
+            impact.isCat = true;
             var holdable = car.AddComponent<HoldableEngine>();
             holdable.Rigidbody = car.GetComponent<Rigidbody>();
             holdable.PickUp = true;
@@ -80,7 +84,7 @@ namespace BananaDispenser
 
         private void OnTriggerEnter(Collider collider)
         {
-            if (collider.name == "buttonPresser" && canPress)
+            if (collider.name == "buttonPresserR" && canPress)
             {
                 //Get Random Force
                 force = UnityEngine.Random.Range(700, 1000);
@@ -89,7 +93,7 @@ namespace BananaDispenser
                 canPress = false;
 
                 //See If Lower Than 720 Then Spawn Car
-                if(force < 720)
+                if(force < 705)
                 {
                     SpawnCar();
                 }
@@ -102,10 +106,38 @@ namespace BananaDispenser
                 GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(67, false, 0.1f);
                 GorillaTagger.Instance.StartVibration(false, .01f, 0.001f);
             }
+
+            if (collider.name == "buttonPresserL" && canPress)
+            {
+                //Get Random Force
+                force = UnityEngine.Random.Range(700, 1000);
+
+                //Make So You Cant Press
+                canPress = false;
+
+                //See If Lower Than 720 Then Spawn Car
+                if (force < 701)
+                {
+                    SpawnCar();
+                }
+                else
+                {
+                    SpawnBanan();
+                }
+
+                //Play Click Sound And Vibrate Controller
+                GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(67, true, 0.1f);
+                GorillaTagger.Instance.StartVibration(true, .01f, 0.001f);
+            }
         }
         private void OnTriggerExit(Collider collider)
         {
-            if (collider.name == "buttonPresser" && !canPress)
+            if (collider.name == "buttonPresserR" && !canPress)
+            {
+                canPress = true;
+            }
+
+            if (collider.name == "buttonPresserL" && !canPress)
             {
                 canPress = true;
             }

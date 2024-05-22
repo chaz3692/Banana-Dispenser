@@ -65,18 +65,18 @@ namespace BananaDispenser
               //Right
               if (rightPresser == null)
               {
-                  rightPresser = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                  rightPresser.name = "buttonPresser";
-                  rightPresser.GetComponent<SphereCollider>().isTrigger = true;
-              }
+                rightPresser = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                rightPresser.name = "buttonPresserR";
+                rightPresser.GetComponent<SphereCollider>().isTrigger = true;
+            }
             
               //Left
               if (leftPresser == null)
               {
-                  leftPresser = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                  leftPresser.name = "buttonPresser";
-                  leftPresser.GetComponent<SphereCollider>().isTrigger = true;
-              }
+                leftPresser = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                leftPresser.name = "buttonPresserL";
+                leftPresser.GetComponent<SphereCollider>().isTrigger = true;
+            }
         }
 
         public AssetBundle LoadAssetBundle(string path)
@@ -92,12 +92,12 @@ namespace BananaDispenser
             //Move Button Pressers
               //Right
               rightPresser.transform.parent = GorillaLocomotion.Player.Instance.rightControllerTransform;
-              rightPresser.transform.localPosition = new Vector3(0f, 0f, 0f) * GorillaLocomotion.Player.Instance.scale;
+              rightPresser.transform.localPosition = new Vector3(0f, -0.1f, 0f) * GorillaLocomotion.Player.Instance.scale;
               rightPresser.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f) * GorillaLocomotion.Player.Instance.scale;
 
               //Left
-              leftPresser.transform.parent = GorillaLocomotion.Player.Instance.rightControllerTransform;
-              leftPresser.transform.localPosition = new Vector3(0f, 0f, 0f) * GorillaLocomotion.Player.Instance.scale;
+              leftPresser.transform.parent = GorillaLocomotion.Player.Instance.leftControllerTransform;
+              leftPresser.transform.localPosition = new Vector3(0f, -0.1f, 0f) * GorillaLocomotion.Player.Instance.scale;
               leftPresser.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f) * GorillaLocomotion.Player.Instance.scale;
         }
     }

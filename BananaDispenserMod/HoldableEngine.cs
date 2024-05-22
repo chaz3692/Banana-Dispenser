@@ -12,14 +12,13 @@ namespace DevHoldableEngine
         public Rigidbody Rigidbody;
         public AudioSource audioSource;
         public AudioClip grabSound;
-        public AudioClip popSound;
         public AudioClip throwSound;
-        public AudioClip splatSound;
         public Collider boxColl;
 
         public float Distance = 0.2f;
         public float ThrowForce = 3f;
         private const float velocityForSplat = 10f;
+        public bool isCat;
 
         public virtual void OnGrab(bool isLeft)
         {
@@ -120,21 +119,10 @@ namespace DevHoldableEngine
             }
         }
 
-        public void OnCollisionEnter(Collision collision)
-        {
-            if (collision.relativeVelocity.magnitude > velocityForSplat)
-            {
-                audioSource.clip = splatSound;
-                audioSource.PlayOneShot(audioSource.clip);
-            }
-        }
-
         public void Awake()
         {
             grabSound = Plugin.bundle.LoadAsset<AudioClip>("grab");
             throwSound = Plugin.bundle.LoadAsset<AudioClip>("throw");
-            splatSound = Plugin.bundle.LoadAsset<AudioClip>("splat");
-            popSound = Plugin.bundle.LoadAsset<AudioClip>("pop");
         }
     }
 }
