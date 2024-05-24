@@ -17,68 +17,101 @@ namespace BananaDispenser
     public class SpawnBananaButton : MonoBehaviour
     {
         public static GameObject banana;
-        public static GameObject car;
+        public static GameObject rBanana;
+        public static GameObject pipe;
         public static Transform spawnPos1;
         public static Transform spawnPos2;
         public static float force = 1000;
         public static bool canPress = true;
+        public bool isPipe;
 
         public void SpawnBanan()
         {
             spawnPos1 = Plugin.spawnPos1;
             spawnPos2 = Plugin.spawnPos2;
 
-            banana = Instantiate(Plugin.bundle.LoadAsset<GameObject>("Banana"));
-
-            //Set Pos To Tree
-            banana.transform.position = spawnPos1.transform.position;
-
-            //Add Force
-            if (force < 850)
+            if(!isPipe)
             {
-                banana.GetComponent<Rigidbody>().AddForce(spawnPos2.transform.up * force);
+                banana = Instantiate(Plugin.bundle.LoadAsset<GameObject>("Banana"));
+
+                //Set Pos To Tree
+                banana.transform.position = spawnPos1.transform.position;
+
+                //Add Force
+                if (force < 850)
+                {
+                    banana.GetComponent<Rigidbody>().AddForce(spawnPos2.transform.up * force);
+                }
+                if (force > 850)
+                {
+                    banana.GetComponent<Rigidbody>().AddForce(spawnPos1.transform.up * force);
+                }
+
+                //Add Physics
+                var impact = banana.AddComponent<ImpactEffects>();
+                impact.isPipe = false;
+                var holdable = banana.AddComponent<HoldableEngine>();
+                holdable.Rigidbody = banana.GetComponent<Rigidbody>();
+                holdable.PickUp = true;
+                banana.AddComponent<RigidbodyWaterInteraction>();
+
+                //Make Collisions Work
+                banana.layer = 8;
             }
-            if (force > 850)
+            else
             {
-                banana.GetComponent<Rigidbody>().AddForce(spawnPos1.transform.up * force);
+                pipe = Instantiate(Plugin.bundle.LoadAsset<GameObject>("Pipe"));
+
+                //Set Pos To Tree
+                pipe.transform.position = spawnPos1.transform.position;
+
+                //Add Force
+                if (force < 850)
+                {
+                    pipe.GetComponent<Rigidbody>().AddForce(spawnPos2.transform.up * force);
+                }
+                if (force > 850)
+                {
+                    pipe.GetComponent<Rigidbody>().AddForce(spawnPos1.transform.up * force);
+                }
+
+                //Add Physics
+                var impact = pipe.AddComponent<ImpactEffects>();
+                impact.isPipe = true;
+                var holdable = pipe.AddComponent<HoldableEngine>();
+                holdable.Rigidbody = pipe.GetComponent<Rigidbody>();
+                holdable.PickUp = true;
+                pipe.AddComponent<RigidbodyWaterInteraction>();
+
+                //Make Collisions Work
+                pipe.layer = 8;
             }
-
-            //Add Physics
-            var impact = banana.AddComponent<ImpactEffects>();
-            impact.isPipe = false;
-            var holdable = banana.AddComponent<HoldableEngine>();
-            holdable.Rigidbody = banana.GetComponent<Rigidbody>();
-            holdable.PickUp = true;
-            banana.AddComponent<RigidbodyWaterInteraction>();
-
-            //Make Collisions Work
-            banana.layer = 8;
         }
 
-        public void SpawnCar()
+        public void SpawnRainbow()
         {
             spawnPos1 = Plugin.spawnPos1;
 
-            car = Instantiate(Plugin.bundle.LoadAsset<GameObject>("Pipe"));
+            rBanana = Instantiate(Plugin.bundle.LoadAsset<GameObject>("RainbowBanana"));
 
             //Set Pos To Tree
-            car.transform.position = spawnPos1.transform.position;
+            rBanana.transform.position = spawnPos1.transform.position;
 
             //Add Force
             force = UnityEngine.Random.Range(700, 1000);
 
-            car.GetComponent<Rigidbody>().AddForce(spawnPos1.transform.up * force);
+            rBanana.GetComponent<Rigidbody>().AddForce(spawnPos1.transform.up * force);
 
             //Add Physics
-            var impact = car.AddComponent<ImpactEffects>();
-            impact.isPipe = true;
-            var holdable = car.AddComponent<HoldableEngine>();
-            holdable.Rigidbody = car.GetComponent<Rigidbody>();
+            var impact = rBanana.AddComponent<ImpactEffects>();
+            impact.isPipe = false;
+            var holdable = rBanana.AddComponent<HoldableEngine>();
+            holdable.Rigidbody = rBanana.GetComponent<Rigidbody>();
             holdable.PickUp = true;
-            car.AddComponent<RigidbodyWaterInteraction>();
+            rBanana.AddComponent<RigidbodyWaterInteraction>();
 
             //Make Collisions Work
-            car.layer = 8;
+            rBanana.layer = 8;
         }
 
         private void OnTriggerEnter(Collider collider)
@@ -91,14 +124,21 @@ namespace BananaDispenser
                 //Make So You Cant Press
                 canPress = false;
 
-                //See If Lower Than 720 Then Spawn Car
-                if(force < 705)
+                if (isPipe)
                 {
-                    SpawnCar();
+                    SpawnBanan();
                 }
                 else
                 {
-                    SpawnBanan();
+                    //See If Lower Than 720 Then Spawn Rainbow Banana
+                    if (force < 705)
+                    {
+                        SpawnRainbow();
+                    }
+                    else
+                    {
+                        SpawnBanan();
+                    }
                 }
 
                 //Play Click Sound And Vibrate Controller
@@ -114,14 +154,21 @@ namespace BananaDispenser
                 //Make So You Cant Press
                 canPress = false;
 
-                //See If Lower Than 720 Then Spawn Car
-                if (force < 701)
+                if (isPipe)
                 {
-                    SpawnCar();
+                    SpawnBanan();
                 }
                 else
                 {
-                    SpawnBanan();
+                    //See If Lower Than 720 Then Spawn Rainbow Banana
+                    if (force < 705)
+                    {
+                        SpawnRainbow();
+                    }
+                    else
+                    {
+                        SpawnBanan();
+                    }
                 }
 
                 //Play Click Sound And Vibrate Controller
