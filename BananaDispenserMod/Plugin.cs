@@ -68,6 +68,7 @@ namespace BananaDispenser
                 rightPresser = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 rightPresser.name = "buttonPresserR";
                 rightPresser.GetComponent<SphereCollider>().isTrigger = true;
+                rightPresser.layer = 11;
             }
             
               //Left
@@ -76,6 +77,7 @@ namespace BananaDispenser
                 leftPresser = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 leftPresser.name = "buttonPresserL";
                 leftPresser.GetComponent<SphereCollider>().isTrigger = true;
+                leftPresser.layer = 11;
             }
         }
 
