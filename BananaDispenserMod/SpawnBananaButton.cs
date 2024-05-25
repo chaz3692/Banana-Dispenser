@@ -88,11 +88,11 @@ namespace BananaDispenser
             }
         }
 
-        public void SpawnRainbow()
+        public void SpawnCorrupted()
         {
             spawnPos1 = Plugin.spawnPos1;
 
-            rBanana = Instantiate(Plugin.bundle.LoadAsset<GameObject>("RainbowBanana"));
+            rBanana = Instantiate(Plugin.bundle.LoadAsset<GameObject>("CorruptedBanana"));
 
             //Set Pos To Tree
             rBanana.transform.position = spawnPos1.transform.position;
@@ -104,7 +104,7 @@ namespace BananaDispenser
 
             //Add Physics
             var impact = rBanana.AddComponent<ImpactEffects>();
-            impact.isPipe = false;
+            impact.isCorrupted = true;
             var holdable = rBanana.AddComponent<HoldableEngine>();
             holdable.Rigidbody = rBanana.GetComponent<Rigidbody>();
             holdable.PickUp = true;
@@ -133,7 +133,7 @@ namespace BananaDispenser
                     //See If Lower Than 720 Then Spawn Rainbow Banana
                     if (force < 705)
                     {
-                        SpawnRainbow();
+                        SpawnCorrupted();
                     }
                     else
                     {
@@ -163,7 +163,7 @@ namespace BananaDispenser
                     //See If Lower Than 720 Then Spawn Rainbow Banana
                     if (force < 705)
                     {
-                        SpawnRainbow();
+                        SpawnCorrupted();
                     }
                     else
                     {

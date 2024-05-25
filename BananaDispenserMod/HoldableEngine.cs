@@ -32,6 +32,7 @@ namespace DevHoldableEngine
                 boxColl = gameObject.GetComponent<BoxCollider>();
             }
             audioSource.pitch = 1;
+            audioSource.volume = 1;
             audioSource.clip = grabSound;
             audioSource.PlayOneShot(audioSource.clip);
 
@@ -52,6 +53,7 @@ namespace DevHoldableEngine
                 }
             }
             audioSource.pitch = 1;
+            audioSource.volume = 1;
             audioSource.clip = throwSound;
             audioSource.PlayOneShot(audioSource.clip);
         }

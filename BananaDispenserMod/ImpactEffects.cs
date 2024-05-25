@@ -10,17 +10,22 @@ namespace BananaDispenser
         private const float velocityForEffects = 15f;
         private AudioClip splatSound;
         private AudioClip pipeSound;
+        private AudioClip corruptedSound;
         public bool isPipe;
+        public bool isCorrupted;
         private const float effectVolume = 1f;
         private AudioSource audioSource;
 
         void Awake()
         {
-            //Load imapct audio clips and add them to the List
+            //Load Pipe sound
             pipeSound = Plugin.bundle.LoadAsset<AudioClip>("MetalPipe");
 
             //Load Splat sound
             splatSound = Plugin.bundle.LoadAsset<AudioClip>("splat");
+
+            //Load Corrupted sound
+            corruptedSound = Plugin.bundle.LoadAsset<AudioClip>("WindowsError");
 
             //Get audio source from gameObject
             audioSource = gameObject.GetComponent<AudioSource>();
@@ -35,19 +40,34 @@ namespace BananaDispenser
                 if(isPipe)
                 {
                     //Plays the set audio clip
-                    audioSource.PlayOneShot(pipeSound, 0.1f);
+                    audioSource.PlayOneShot(pipeSound, 1f);
                 }
                 else
                 {
-                    //Changes pitch of splat to add veriety to the noise
-                    audioSource.pitch = UnityEngine.Random.Range(0.7f, 1f);
-                    
-                    //Plays splat sound
-                    audioSource.PlayOneShot(splatSound, effectVolume);
+                    if(isCorrupted)
+                    {
+                        //Changes pitch of splat to add veriety to the noise
+                        audioSource.pitch = UnityEngine.Random.Range(0.9f, 1f);
 
-                    //Spawns particles and sets pos to current banana pos
-                    GameObject particle = Instantiate(Plugin.bundle.LoadAsset<GameObject>("SplatParticle"));
-                    particle.transform.position = gameObject.transform.position;
+                        //Plays splat sound
+                        audioSource.PlayOneShot(corruptedSound, 3);
+
+                        //Spawns particles and sets pos to current banana pos
+                        GameObject corruptedParticle = Instantiate(Plugin.bundle.LoadAsset<GameObject>("CorruptedParticle"));
+                        corruptedParticle.transform.position = gameObject.transform.position;
+                    }
+                    else
+                    {
+                        //Changes pitch of splat to add veriety to the noise
+                        audioSource.pitch = UnityEngine.Random.Range(0.8f, 1f);
+
+                        //Plays splat sound
+                        audioSource.PlayOneShot(splatSound, effectVolume);
+
+                        //Spawns particles and sets pos to current banana pos
+                        GameObject particle = Instantiate(Plugin.bundle.LoadAsset<GameObject>("SplatParticle"));
+                        particle.transform.position = gameObject.transform.position;
+                    }
                 }
             }
         }
